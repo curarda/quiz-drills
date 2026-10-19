@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quiz Drills">
+<meta name="theme-color" content="#0e131f">
+<title>Quiz Drills</title>
+<style>
+  :root {
+    --bg: #0e131f;
+    --card: #192033;
+    --card-border: #28334e;
+    --accent: #4f80ff;
+    --accent-hover: #3b6ae0;
+    --text: #f0f4fc;
+    --muted: #8b9bb4;
+    --correct: #2ecc71;
+    --wrong: #e74c3c;
+    --radius: 14px;
+    --safe-top: env(safe-area-inset-top, 16px);
+    --safe-bottom: env(safe-area-inset-bottom, 16px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--safe-top);
+    padding-bottom: var(--safe-bottom);
+  }
+  header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--card-border);
+  }
+  header h1 {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+  }
+  .hidden { display: none !important; }
+  .view {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .view.active { display: flex; }
+
+  /* HOME VIEW */
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .lesson-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.1s, border-color 0.2s;
+  }
+  .lesson-card:active { transform: scale(0.98); }
+  .lesson-title { font-size: 1.15rem; font-weight: 600; }
+  .lesson-meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lesson-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .btn-sm {
+    background: #252f4a;
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto;
+  }
+  .btn-primary:active { background: var(--accent-hover); }
+
+  /* QUIZ VIEW */
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  .progress-bar-wrap {
+    width: 100%;
+    height: 6px;
+    background: #252f4a;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .q-box {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin-bottom: 24px;
+    min-height: 60px;
+  }
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .opt-btn {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    padding: 14px 16px;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .opt-btn .opt-prefix {
+    color: var(--muted);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .opt-btn.correct {
+    background: rgba(46, 204, 113, 0.2) !important;
+    border-color: var(--correct) !important;
+    color: #fff;
+  }
+  .opt-btn.wrong {
+    background: rgba(231, 76, 60, 0.2) !important;
+    border-color: var(--wrong) !important;
+    color: #fff;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 85vh;
+  }
+  .modal-box textarea {
+    background: #0e131f;
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    padding: 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    resize: none;
+    height: 180px;
+  }
+  .hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  /* SCORE VIEW */
+  .score-card {
+    text-align: center;
+    margin: auto 0;
+  }
+  .score-card h2 { font-size: 2.2rem; margin: 0 0 10px; }
+  .score-card p { color: var(--muted); margin-bottom: 24px; font-size: 1.1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="app-title">Study Drills</h1>
+  <button id="back-home-btn" class="icon-btn hidden" onclick="goHome()">Back</button>
+</header>
+
+<!-- 1. HOME VIEW -->
+<div id="view-home" class="view active">
+  <div style="margin-bottom:12px;">
+    <div style="font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Lessons</div>
+    <div style="font-size:1.1rem; font-weight:600;">Choose a lesson to test yourself</div>
+  </div>
+  <div class="grid" id="lesson-list"></div>
+</div>
+
+<!-- 2. QUIZ VIEW -->
+<div id="view-quiz" class="view">
+  <div class="quiz-header">
+    <span id="quiz-lesson-name">Lesson</span>
+    <span id="q-counter">1 / 10</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="q-box" id="question-text">Question goes here?</div>
+  <div class="options-list" id="options-box"></div>
+  <button id="next-btn" class="btn-primary" style="display:none; margin-top:24px;" onclick="nextQuestion()">Next Question</button>
+</div>
+
+<!-- 3. SCORE VIEW -->
+<div id="view-score" class="view">
+  <div class="score-card">
+    <h2 id="score-val">0 / 0</h2>
+    <p id="score-feedback">Session completed!</p>
+    <button class="btn-primary" onclick="restartLesson()">Run Again (Reshuffled)</button>
+    <button class="icon-btn" style="width:100%; margin-top:10px; padding:12px;" onclick="goHome()">Return to Lessons</button>
+  </div>
+</div>
+
+<!-- MODAL: ADD / PASTE QUESTIONS -->
+<div class="modal-overlay" id="paste-modal">
+  <div class="modal-box">
+    <h3 style="margin:0;" id="modal-title">Upload Questions</h3>
+    <div class="hint">
+      Paste 5-option questions below. Mark the correct answer with <b>*</b> or <b>(c)</b>.<br><br>
+      Example format:<br>
+      <i>What is an autoregressive model?</i><br>
+      <i>* A model forecasting based on past values</i><br>
+      <i>A linear regression against independent assets</i><br>
+      <i>A variance check without lags</i><br>
+      <i>A seasonal-only smoothing technique</i><br>
+      <i>A non-stochastic trend estimator</i>
+    </div>
+    <textarea id="paste-area" placeholder="Paste your questions here..."></textarea>
+    <div style="display:flex; gap:10px; justify-content:flex-end;">
+      <button class="btn-sm" onclick="closeModal()">Cancel</button>
+      <button class="btn-sm" style="background:var(--accent); font-weight:600;" onclick="savePastedQuestions()">Append Questions</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULT_LESSONS = [
+  "Regulatory Econ",
+  "Behavioural Econ",
+  "Time Series",
+  "Portf. Man."
+];
+
+let appData = {};
+let currentLesson = "";
+let currentQuizQueue = [];
+let currentIndex = 0;
+let currentScore = 0;
+let answerSubmitted = false;
+
+function esc(t) {
+  return String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+// 1. Storage & Init
+function loadData() {
+  const saved = localStorage.getItem("quiz_app_lessons");
+  if (saved) {
+    try { appData = JSON.parse(saved); } catch(e) { appData = {}; }
+  }
+  DEFAULT_LESSONS.forEach(name => {
+    if (!appData[name]) appData[name] = [];
+  });
+  saveData();
+}
+
+function saveData() {
+  localStorage.setItem("quiz_app_lessons", JSON.stringify(appData));
+}
+
+// 2. Navigation
+function showView(viewId) {
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  document.getElementById(viewId).classList.add("active");
+  const backBtn = document.getElementById("back-home-btn");
+  if (viewId === "view-home") {
+    backBtn.classList.add("hidden");
+    document.getElementById("app-title").textContent = "Study Drills";
+    renderLessons();
+  } else {
+    backBtn.classList.remove("hidden");
+  }
+}
+
+function goHome() {
+  showView("view-home");
+}
+
+// 3. Render Lessons List
+function renderLessons() {
+  const container = document.getElementById("lesson-list");
+  container.innerHTML = "";
+
+  Object.keys(appData).forEach(name => {
+    const count = appData[name].length;
+    const card = document.createElement("div");
+    card.className = "lesson-card";
+    card.innerHTML = `
+      <div class="lesson-title">${esc(name)}</div>
+      <div class="lesson-meta">
+        <span>${count} question${count === 1 ? '' : 's'} available</span>
+      </div>
+      <div class="lesson-actions" onclick="event.stopPropagation();">
+        <button class="btn-sm" style="background:var(--accent); color:#fff; font-weight:600;" onclick="startQuiz('${name}')">Start Quiz</button>
+        <button class="btn-sm" onclick="openAddModal('${name}')">+ Add Questions</button>
+        <button class="btn-sm" style="color:#e74c3c;" onclick="clearLesson('${name}')">Clear</button>
+      </div>
+    `;
+    card.addEventListener("click", () => startQuiz(name));
+    container.appendChild(card);
+  });
+}
+
+// 4. Modal handling & Question Parser
+let targetLesson = "";
+function openAddModal(lessonName) {
+  targetLesson = lessonName;
+  document.getElementById("modal-title").textContent = `Upload to: ${lessonName}`;
+  document.getElementById("paste-area").value = "";
+  document.getElementById("paste-modal").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("paste-modal").classList.remove("open");
+}
+
+function savePastedQuestions() {
+  const text = document.getElementById("paste-area").value.trim();
+  if (!text) { closeModal(); return; }
+
+  // Simple multi-line parser: splits question blocks by empty lines or collects sets of 6 lines
+  const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+  let parsed = [];
+  let tempQ = null;
+  let skipped = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    // Check if line is an option
+    const isCorrect = line.startsWith("*") || line.startsWith("(c)") || line.startsWith("[x]");
+    const cleanLine = line.replace(/^(\*|\(c\)|\(C\)|\[x\]|\([A-Ea-e]\))\s*/, "");
+
+    if (!tempQ) {
+      tempQ = { question: line, options: [], answer: -1 };
+    } else {
+      if (isCorrect) tempQ.answer = tempQ.options.length;
+      tempQ.options.push(cleanLine);
+
+      if (tempQ.options.length === 5) {
+        if (tempQ.answer >= 0) parsed.push(tempQ); else skipped++;
+        tempQ = null;
+      }
+    }
+  }
+
+  if (parsed.length > 0) {
+    appData[targetLesson] = (appData[targetLesson] || []).concat(parsed);
+    saveData();
+    alert(`Added ${parsed.length} questions successfully!` + (skipped ? `\n${skipped} skipped (no correct answer marked).` : ""));
+    closeModal();
+    renderLessons();
+  } else {
+    if (skipped) alert(`${skipped} question(s) skipped: no correct answer marked with * or (c).`);
+    else alert("Could not detect full 5-choice questions. Make sure each question has 1 question line followed by 5 option lines!");
+  }
+}
+
+function clearLesson(name) {
+  if (confirm(`Remove all saved questions from ${name}?`)) {
+    appData[name] = [];
+    saveData();
+    renderLessons();
+  }
+}
+
+// 5. Quiz Logic (Randomized order)
+function shuffle(array) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function startQuiz(lessonName) {
+  currentLesson = lessonName;
+  const pool = appData[lessonName] || [];
+  if (pool.length === 0) {
+    alert(`No questions found in "${lessonName}". Tap "+ Add Questions" first!`);
+    return;
+  }
+  currentQuizQueue = shuffle(pool);
+  currentIndex = 0;
+  currentScore = 0;
+  showView("view-quiz");
+  document.getElementById("quiz-lesson-name").textContent = currentLesson;
+  renderQuestion();
+}
+
+function restartLesson() {
+  startQuiz(currentLesson);
+}
+
+const PREFIXES = ["A", "B", "C", "D", "E"];
+function renderQuestion() {
+  answerSubmitted = false;
+  document.getElementById("next-btn").style.display = "none";
+
+  const total = currentQuizQueue.length;
+  document.getElementById("q-counter").textContent = `${currentIndex + 1} / ${total}`;
+  document.getElementById("progress-fill").style.width = `${((currentIndex) / total) * 100}%`;
+
+  const item = currentQuizQueue[currentIndex];
+  document.getElementById("question-text").textContent = item.question;
+
+  const box = document.getElementById("options-box");
+  box.innerHTML = "";
+
+  item.options.forEach((optText, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-btn";
+    btn.innerHTML = `<span class="opt-prefix">${PREFIXES[idx] || "•"}</span> <span>${esc(optText)}</span>`;
+    btn.onclick = () => selectOption(idx, btn);
+    box.appendChild(btn);
+  });
+}
+
+function selectOption(selectedIdx, btnElement) {
+  if (answerSubmitted) return;
+  answerSubmitted = true;
+
+  const item = currentQuizQueue[currentIndex];
+  const allBtns = document.querySelectorAll(".opt-btn");
+
+  if (selectedIdx === item.answer) {
+    btnElement.classList.add("correct");
+    currentScore++;
+  } else {
+    btnElement.classList.add("wrong");
+    if (allBtns[item.answer]) {
+      allBtns[item.answer].classList.add("correct");
+    }
+  }
+
+  document.getElementById("progress-fill").style.width = `${((currentIndex + 1) / currentQuizQueue.length) * 100}%`;
+  const nextBtn = document.getElementById("next-btn");
+  nextBtn.style.display = "block";
+  if (currentIndex === currentQuizQueue.length - 1) {
+    nextBtn.textContent = "See Final Score";
+  } else {
+    nextBtn.textContent = "Next Question";
+  }
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex < currentQuizQueue.length) {
+    renderQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+function finishQuiz() {
+  showView("view-score");
+  const total = currentQuizQueue.length;
+  document.getElementById("score-val").textContent = `${currentScore} / ${total}`;
+  const pct = Math.round((currentScore / total) * 100);
+  document.getElementById("score-feedback").textContent = `Accuracy: ${pct}%`;
+}
+
+// Kick off
+loadData();
+showView("view-home");
+</script>
+</body>
+</html>
