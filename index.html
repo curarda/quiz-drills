@@ -535,6 +535,338 @@ const SEED_QUESTIONS = {
     ],
     "answer": 1
   }
+],
+  "Time Series": [
+  {
+    "question": "What happens to standard errors and test statistics when positive autocorrelation in residuals is ignored in regression analysis?",
+    "options": [
+      "Standard errors are overestimated, causing t-statistics to appear smaller.",
+      "Standard errors are underestimated, causing t-statistics to appear artificially larger.",
+      "Standard errors remain unchanged, but F-statistics become smaller.",
+      "Standard errors and t-statistics both drop to zero.",
+      "Both standard errors and t-statistics remain unaffected."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which classical time series component represents long-run movement over extended periods?",
+    "options": [
+      "Business cycle",
+      "Seasonal cycle",
+      "Trend",
+      "Residual",
+      "Pure random process"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is a fundamental assumption distinguishing modern time series analysis from classical analysis?",
+    "options": [
+      "Randomness is contained exclusively within the residual term.",
+      "The entire series is treated as a single realization of a stochastic process.",
+      "Unobservable components like trend and seasonality are purely deterministic and independent.",
+      "Shocks to the series are strictly temporary and always vanish immediately.",
+      "Non-stationarity must be ignored and filtered out of all models."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which mathematical filter is used to eliminate quarterly seasonality from a GDP series?",
+    "options": [
+      "First difference filter",
+      "Continuous growth rate transformation",
+      "Fourth difference filter",
+      "Two-term moving average filter",
+      "Linear trend subtraction"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Why is the continuous growth rate calculated using logarithmic differences preferred over simple percentage change?",
+    "options": [
+      "It eliminates structural breaks in the middle of a time series.",
+      "It guarantees that variance remains constant across all sample dates.",
+      "It ensures mathematical symmetry between increases and decreases.",
+      "It removes both trend and seasonal components simultaneously.",
+      "It converts non-ergodic processes into stationary processes."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "If a quarterly GDP time series is smoothed using a four-term moving average filter, what happens to sudden structural jumps in the data?",
+    "options": [
+      "They are spread out into a ramp across four quarters.",
+      "They are amplified into exponential growth spikes.",
+      "They are completely removed without affecting adjacent periods.",
+      "They cause the variance of the series to shrink to zero.",
+      "They immediately convert the series into white noise."
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the result of applying the operator polynomial (1 - L)(1 + L + L^2 + L^3) to a time series x_t?",
+    "options": [
+      "(1 - L^2)x_t",
+      "(1 - L^3)x_t",
+      "(1 - L^4)x_t",
+      "(1 + L^4)x_t",
+      "L^4 x_t"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "If a lag polynomial is given by a(L) = 1 - 0.5L - 0.2L^2, what is the value of a(1)?",
+    "options": [
+      "0.7",
+      "0.5",
+      "0.3",
+      "1.0",
+      "-0.3"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Why are stationarity and ergodicity necessary assumptions for time series inference?",
+    "options": [
+      "Because we only have a single realization of the process over time.",
+      "Because population parameters can easily be calculated without structural assumptions.",
+      "Because time series data always contains parallel universes for observation.",
+      "Because sample variances automatically equal population variances in finite samples.",
+      "Because missing values must be estimated using lag polynomials."
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which condition defines a mean ergodic process?",
+    "options": [
+      "The sample variance converges to the true population variance as T approaches infinity.",
+      "The time average of a single series converges to the true population mean as T approaches infinity.",
+      "The mean of the process increases linearly with time index T.",
+      "The autocovariance depends strictly on calendar date rather than time lag.",
+      "The joint distribution of the process changes whenever time is shifted."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which requirement must hold for a stochastic process to be weakly stationary?",
+    "options": [
+      "All higher-order joint moments must remain constant over time.",
+      "The mean, variance, and covariances depend only on time lag, not on specific dates.",
+      "The probability density function must follow a standard normal distribution.",
+      "The sample size T must equal infinity for every date t.",
+      "The series must exhibit permanent structural shifts at regular intervals."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Why does covariance stationarity automatically imply variance stationarity?",
+    "options": [
+      "Because variance is defined as the mean divided by the time index.",
+      "Because variance is a special case of covariance where the time distance is zero.",
+      "Because weakly stationary processes must always have zero variance.",
+      "Because autocovariances are strictly independent of the lag length.",
+      "Because strict stationarity excludes variance calculations."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Under what condition is a weakly stationary process guaranteed to also be strictly stationary?",
+    "options": [
+      "When the process follows an MA(1) specification.",
+      "When the error terms are heteroskedastic.",
+      "When the process is a joint multivariate normal process.",
+      "When the sample size is smaller than 20 observations.",
+      "When the series is generated by a random walk with drift."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which set of properties correctly defines a white noise process u_t ~ WN(0, sigma^2)?",
+    "options": [
+      "E[u_t] = mu, V[u_t] = t*sigma^2, Cov[u_t, u_s] != 0",
+      "E[u_t] = 0, V[u_t] = sigma^2, Cov[u_t, u_s] = 0 for t != s",
+      "E[u_t] = 0, V[u_t] = 0, Cov[u_t, u_s] = sigma^2",
+      "E[u_t] = t, V[u_t] = sigma^2, Cov[u_t, u_s] = 0",
+      "E[u_t] = 0, V[u_t] = t*sigma^2, Cov[u_t, u_s] = min(t,s)*sigma^2"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What is the variance of a random walk without drift x_t = x_{t-1} + u_t at period t, given x_0 = 0 and u_t ~ WN(0, sigma^2)?",
+    "options": [
+      "sigma^2",
+      "sigma^2 / t",
+      "t * sigma^2",
+      "t^2 * sigma^2",
+      "sigma^2 / (1 - t)"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the covariance Cov(x_t, x_s) between two periods in a random walk without drift x_t = sum_{j=1}^t u_j?",
+    "options": [
+      "(t + s) * sigma^2",
+      "max(t, s) * sigma^2",
+      "min(t, s) * sigma^2",
+      "|t - s| * sigma^2",
+      "0"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Why is autocovariance divided by variance to calculate the autocorrelation function rho(tau)?",
+    "options": [
+      "To remove seasonal components from the sample.",
+      "To make the statistic grow proportionally with sample size T.",
+      "To obtain a unit-free measure bounded between -1 and +1.",
+      "To transform non-stationary series into stationary series.",
+      "To ensure the expected value of the estimator equals zero."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "In a white noise process with sample size T = 100, what is the approximate 95% confidence band for estimated autocorrelations?",
+    "options": [
+      "+- 0.01",
+      "+- 0.05",
+      "+- 0.20",
+      "+- 0.45",
+      "+- 1.00"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Why is testing individual lag autocorrelations against a confidence band prone to false alarms when evaluating 20 lags?",
+    "options": [
+      "The confidence band shrinks to zero at high lags.",
+      "The sample size decreases to zero after 5 lags.",
+      "The joint probability of at least one false rejection rises to roughly 64%.",
+      "Autocorrelations at higher lags are mathematically impossible to compute.",
+      "The individual confidence band only applies to non-stationary series."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "How does Bartlett's formula adjust the variance of estimated autocorrelations when true autocorrelation exists at low lags?",
+    "options": [
+      "It reduces the variance, narrowing the confidence band.",
+      "It increases the variance, widening the confidence band for higher lags.",
+      "It forces the variance to remain fixed at 1/T.",
+      "It sets the variance of all higher lags equal to zero.",
+      "It replaces sample size T with the lag number k."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What does a correlogram that starts high and decays very slowly (e.g., 0.98, 0.96, 0.94...) indicate?",
+    "options": [
+      "The series is pure white noise.",
+      "The series is an MA(1) process.",
+      "The series exhibits long memory and potential non-stationarity.",
+      "The series is strictly stationary with zero variance.",
+      "The series contains quarterly seasonality without trend."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the defining characteristic of the theoretical autocorrelation function of an MA(1) process x_t = u_t + theta * u_{t-1}?",
+    "options": [
+      "It decays exponentially toward zero across all lags.",
+      "It oscillates endlessly between positive and negative values.",
+      "It is non-zero only at lag 1 and cuts off to zero for lags greater than 1.",
+      "It remains constant at 1.0 for all lags.",
+      "It grows linearly with time distance tau."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What are the three steps of the Box-Jenkins model-building methodology in order?",
+    "options": [
+      "Estimation, Identification, Diagnostic Checking",
+      "Identification, Estimation, Diagnostic Checking",
+      "Diagnostic Checking, Estimation, Identification",
+      "Identification, Diagnostic Checking, Estimation",
+      "Estimation, Diagnostic Checking, Identification"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "In the diagnostic checking phase of Box-Jenkins modeling, what is the desired property of the residual autocorrelations?",
+    "options": [
+      "They should decay slowly like an AR(1) process.",
+      "They should cut off sharply after lag 2.",
+      "They should stay inside the confidence band and behave like white noise.",
+      "They should equal 1.0 at all lags up to lag m.",
+      "They should follow a deterministic trend line."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the null hypothesis (H_0) tested by the Box-Pierce Q statistic and Ljung-Box Q* statistic?",
+    "options": [
+      "The model parameters phi and theta are equal to zero.",
+      "The variance of the residuals grows linearly over time.",
+      "The residual autocorrelations up to lag m are all jointly equal to zero.",
+      "The time series is a non-stationary random walk with drift.",
+      "The degree of freedom of the test equals sample size T."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "How does the Ljung-Box Q* statistic modify the Box-Pierce Q statistic?",
+    "options": [
+      "It replaces the chi-square distribution with a t-distribution.",
+      "It applies a small-sample weighting correction by dividing each squared autocorrelation by (T - j).",
+      "It ignores high lags to prevent false alarm rates.",
+      "It computes variance using population parameters instead of sample estimates.",
+      "It multiplies the statistic by the lag polynomial a(1)."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Under the null hypothesis, what asymptotic distribution do the Box-Pierce Q and Ljung-Box Q* statistics follow?",
+    "options": [
+      "Standard normal distribution",
+      "Student's t-distribution with T - 1 degrees of freedom",
+      "Chi-square distribution with m degrees of freedom",
+      "F-distribution with m and T degrees of freedom",
+      "Uniform distribution between 0 and 1"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "For an AR(1) process x_t = phi * x_{t-1} + u_t to be stationary, what condition must coefficient phi satisfy?",
+    "options": [
+      "phi = 1",
+      "phi > 1",
+      "|phi| < 1",
+      "phi < -1",
+      "phi = 0.5 * T"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the theoretical variance of a stationary AR(1) process x_t = phi * x_{t-1} + u_t where u_t ~ WN(0, sigma^2)?",
+    "options": [
+      "t * sigma^2",
+      "sigma^2 / (1 - phi)",
+      "sigma^2 / (1 - phi^2)",
+      "sigma^2 * (1 - phi^2)",
+      "sigma^2 / phi^2"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What does Wold's Decomposition Theorem state regarding any covariance stationary time series?",
+    "options": [
+      "It can be written as a finite sum of deterministic trend components.",
+      "It can be represented as a weighted sum of past white noise shocks plus a deterministic part.",
+      "It must be differenced d times to achieve zero mean.",
+      "Its autocorrelation function never decays to zero.",
+      "It can only be modeled using a random walk without drift."
+    ],
+    "answer": 1
+  }
 ]
 };
 
