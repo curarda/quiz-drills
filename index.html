@@ -1246,7 +1246,7 @@ const SEED_QUESTIONS = {
     "answer": 1
   },
   {
-    "question": "In market design, what fundamental trade-off exists when deciding the number of spectrum bands to grant in mobile telecommunications auctions?",
+    "question": "In market design, what fundamental trade-off exists when deciding how many licenses to award in a mobile telecommunications spectrum auction?",
     "options": [
       "Trade-off between public ownership and municipal concession terms",
       "Trade-off between economies of scale with fewer operators and increased competition with more operators",
@@ -1271,7 +1271,7 @@ const SEED_QUESTIONS = {
     "question": "What distinguishes deregulation from privatization in the context of infrastructure reform?",
     "options": [
       "Deregulation involves transferring firm ownership to private investors, while privatization creates competitive markets",
-      "Deregulation focuses on creating and protecting market competition, whereas privatization involves transferring ownership or operating rights",
+      "Deregulation removes regulatory restrictions and entry barriers to open markets to competition, whereas privatization involves transferring ownership or operating rights",
       "Deregulation requires public enterprises to maintain uniform tariffs, while privatization mandates rate of return regulation",
       "Deregulation leads to nationalization, whereas privatization leads to corporatization",
       "Deregulation eliminates all state oversight, while privatization creates independent regulatory authorities"
@@ -1314,6 +1314,16 @@ const SEED_QUESTIONS = {
 ]
 };
 
+// Questions corrected after first release: replace stored copies of the old text
+const SEED_FIXES = [
+  { lesson: "Regulatory Econ",
+    old: "In market design, what fundamental trade-off exists when deciding the number of spectrum bands to grant in mobile telecommunications auctions?",
+    now: "In market design, what fundamental trade-off exists when deciding how many licenses to award in a mobile telecommunications spectrum auction?" },
+  { lesson: "Regulatory Econ",
+    old: "What distinguishes deregulation from privatization in the context of infrastructure reform?",
+    now: "What distinguishes deregulation from privatization in the context of infrastructure reform?" }
+];
+
 let appData = {};
 let currentLesson = "";
 let currentQuizQueue = [];
@@ -1344,6 +1354,16 @@ function loadData() {
     }
   });
   localStorage.setItem("quiz_app_seeded", JSON.stringify(seeded));
+
+  // One-time corrections for questions imported before they were fixed
+  if (!localStorage.getItem("quiz_app_fixes_v1")) {
+    SEED_FIXES.forEach(fx => {
+      const fresh = SEED_QUESTIONS[fx.lesson].find(q => q.question === fx.now);
+      const list = appData[fx.lesson] || [];
+      list.forEach((q, i) => { if (q.question === fx.old && fresh) list[i] = fresh; });
+    });
+    localStorage.setItem("quiz_app_fixes_v1", "1");
+  }
   saveData();
 }
 
