@@ -1364,6 +1364,16 @@ function loadData() {
     });
     localStorage.setItem("quiz_app_fixes_v1", "1");
   }
+  // Drop exact duplicates (same question text) within each lesson
+  Object.keys(appData).forEach(name => {
+    const seen = new Set();
+    appData[name] = appData[name].filter(q => {
+      const key = q.question.trim().toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  });
   saveData();
 }
 
