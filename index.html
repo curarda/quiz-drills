@@ -313,7 +313,230 @@ const DEFAULT_LESSONS = [
   "Portf. Man."
 ];
 
-const SEED_QUESTIONS = {};
+const SEED_QUESTIONS = {
+  "Behavioural Econ": [
+  {
+    "question": "Let f stand for France, n for Norway, and B for the relation \"is bigger than\". In the notation aRb (\"a stands in relation R to b\"), which expression states that Norway is bigger than France?",
+    "options": [
+      "fBn",
+      "nBf",
+      "nBn",
+      "fBf",
+      "Bnf"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which statement correctly distinguishes a descriptive theory from a normative theory of decision?",
+    "options": [
+      "A descriptive theory is about what people want, a normative theory is about what the economist wants.",
+      "A descriptive theory covers choices under certainty, a normative theory covers choices under uncertainty.",
+      "A descriptive theory is tested with experiments, a normative theory is tested with field data.",
+      "A descriptive theory answers \"what is happening?\", a normative theory answers \"what should happen?\"",
+      "A descriptive theory is about deviations that cancel out on average, a normative theory is about deviations that do not."
+    ],
+    "answer": 3
+  },
+  {
+    "question": "In \"rational choice under certainty\", what does certainty mean?",
+    "options": [
+      "There is no doubt about which action leads to which outcome.",
+      "The person knows which of any two alternatives they prefer, so all pairs can be compared.",
+      "The person's income and the prices they face are fixed and known.",
+      "The chosen option is guaranteed to make the person happier than every other option.",
+      "Every person has the same preferences, so outcomes are predictable."
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which option best describes the idea of revealed preference?",
+    "options": [
+      "Preferences are learned by asking people hypothetical questions about what they would choose.",
+      "Preferences are read directly off brain activity, because pleasure and pain are visible in a scanner.",
+      "Preferences are whatever gives pleasure, since people pursue pleasure and avoid pain.",
+      "Preferences are the rules of thumb that people report using when they decide.",
+      "Preferences cannot be observed directly, but choices can, so choices are used to learn preferences."
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Let U be the universe of alternatives and let x ≽ y mean \"x is at least as good as y\". Which expression states the completeness axiom for all x, y in U?",
+    "options": [
+      "x ≽ y and y ≽ x",
+      "x ≽ y or y ≽ x, but not both",
+      "x ≽ y or y ≽ x (or both)",
+      "x ≽ y ⇒ y ≽ x",
+      "(x ≽ y and y ≽ z) ⇒ x ≽ z"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which expression states the transitivity axiom for all x, y, z in U?",
+    "options": [
+      "(x ≽ y and y ≽ z) ⇒ x ≽ z",
+      "(x ≽ y or y ≽ z) ⇒ x ≽ z",
+      "(x ≽ y and y ≽ z) ⇒ z ≽ x",
+      "(x ≽ y and y ≽ z) ⇒ x ≻ z",
+      "(x ≽ y and z ≽ y) ⇒ x ≽ z"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which statement correctly describes a systematic deviation from the rational-choice model and says which type behavioral economics models?",
+    "options": [
+      "Systematic deviations are small and unsystematic ones are large; behavioral economics studies the small ones.",
+      "Systematic deviations appear only in laboratory settings; behavioral economics studies these.",
+      "Systematic deviations go in the same predictable direction and do not cancel out on average; behavioral economics models these.",
+      "Systematic deviations are scattered in random directions and cancel out on average; behavioral economics models these.",
+      "Both kinds cancel out on average, but systematic ones do so more slowly."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Mr S has joint accounts with his wife. He finds a sweater too extravagant to buy for himself, but he is delighted when his wife gives him the same sweater, paid for from the same pool of money. Which concept does this illustrate?",
+    "options": [
+      "Social information: his decision depends on how much others spent.",
+      "Numeracy: he cannot calculate that a gift and a purchase cost the same.",
+      "Hedonic psychology: he simply enjoys gifts more because pleasure is his only goal.",
+      "An unsystematic deviation: such reactions would average out across many people.",
+      "Mental accounting: he keeps \"purchase\" and \"gift\" in separate mental boxes, even though money is fungible."
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Which expression correctly defines strict preference x ≻ y in terms of weak preference ≽?",
+    "options": [
+      "x ≽ y and y ≽ x",
+      "x ≽ y and not (y ≽ x)",
+      "not (x ≽ y) and y ≽ x",
+      "x ≽ y or not (y ≽ x)",
+      "not (x ≽ y) and not (y ≽ x)"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What mainly distinguishes a hypothetical question from a laboratory experiment as a research method?",
+    "options": [
+      "Hypothetical questions assign participants randomly to test and control groups; laboratory experiments do not.",
+      "Hypothetical questions use university students; laboratory experiments use the general public.",
+      "Hypothetical questions measure brain activity; laboratory experiments measure choices.",
+      "In hypothetical questions no real money is at stake; in laboratory experiments decisions are real and winnings are paid.",
+      "Hypothetical questions are run in the real world; laboratory experiments are run in controlled rooms."
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of the following is NOT required for a person to be making a rational choice in the sense of the course?",
+    "options": [
+      "Their weak preference relation is complete.",
+      "Their preferences are ones that others would regard as reasonable, for example not sadistic.",
+      "Their weak preference relation is transitive.",
+      "In every menu they choose a most preferred option (one of the best, if there is a tie).",
+      "Their preferences are described by a weak preference relation ≽ over the alternatives."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The theory says \"choose the most preferred option in the menu\". Why does this instruction run into trouble if the completeness axiom is dropped?",
+    "options": [
+      "For a pair of alternatives that cannot be compared, there may be no best option, so \"the best in the menu\" is undefined.",
+      "The person could be led through a sequence of paid swaps that returns them to where they started.",
+      "Indifference would stop being symmetric.",
+      "Strict preference could start to cycle.",
+      "Transitivity would automatically fail, because it requires every pair to be related."
+    ],
+    "answer": 0
+  },
+  {
+    "question": "What is the key difference between having a rational preference relation and making a rational choice?",
+    "options": [
+      "A rational preference relation only needs completeness; a rational choice additionally requires transitivity.",
+      "A rational preference relation must be representable by cardinal utility; a rational choice needs only ordinal utility.",
+      "A rational preference relation must be self-interested; a rational choice may be altruistic.",
+      "A rational preference relation must rank goals as good or bad; a rational choice is silent on goals.",
+      "A rational preference relation (a complete and transitive weak preference relation) is not enough; a rational choice also requires choosing a most preferred option in every menu."
+    ],
+    "answer": 4
+  },
+  {
+    "question": "A utility function u assigns a number u(x) to each alternative x. Which statement is the definition of u representing the weak preference relation ≽, for all x, y?",
+    "options": [
+      "x ≽ y ⇒ u(x) > u(y)",
+      "x ≽ y ⇔ u(x) > u(y)",
+      "x ≽ y ⇔ u(x) ≥ u(y)",
+      "u(x) ≥ u(y) ⇒ x ≽ y (this direction only)",
+      "x ≽ y ⇔ u(x) = u(y)"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which set of statements describes a cycle through three alternatives x, y, z in a relation R?",
+    "options": [
+      "xRy and yRx",
+      "xRy, yRz, and xRz",
+      "xRx, yRy, and zRz",
+      "xRy, yRz, and zRx",
+      "xRy, yRz, and not xRz"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "A person holds item x and has the strict preferences y ≻ x, z ≻ y, and x ≻ z. A trader repeatedly offers to swap her current item for one she strictly prefers, charging 1 TL per swap. She accepts every such offer for three swaps. What happens, and what does it show?",
+    "options": [
+      "She ends with z, better off at every step, so cycles in preference are harmless.",
+      "She ends with x again, 3 TL poorer, which shows that intransitive preferences allow exploitation.",
+      "She ends with x again but loses nothing, since going around a cycle means she is indifferent among the items.",
+      "She ends with y, because after the first swap she no longer prefers anything on offer.",
+      "She ends with x again, 3 TL poorer, which shows that preferences must be complete."
+    ],
+    "answer": 1
+  },
+  {
+    "question": "In the ultimatum game, a proposer offers the responder 10 TL out of 100 TL, and the responder rejects it, so both get nothing. What does this behavior mainly show in relation to a prediction based on money alone?",
+    "options": [
+      "A money-only prediction says \"accept any positive offer\"; rejection suggests people also care about fairness and will pay to punish unfairness.",
+      "The responder violates transitivity, because refusing 10 TL in favor of 0 TL is inconsistent.",
+      "The rejection is an unsystematic deviation that will cancel out on average across responders.",
+      "The responder cannot compare 10 TL with 0 TL, so the preference relation is incomplete.",
+      "The responder misunderstood the game, because rational-choice theory forbids giving up money."
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Two utility functions represent the same ranking: Heavenly Bliss ≻ Coke ∼ Pepsi ≻ Eternal Suffering. The first assigns 10, 4, 4, 1 and the second assigns 90, 7, 7, −2, in that order. A student concludes from the first function that \"Heavenly Bliss is 2.5 times as good as Coke\". What is the right assessment?",
+    "options": [
+      "Correct, because the first function uses smaller numbers and is therefore more precise.",
+      "Correct for the first function and incorrect for the second, so the two functions represent different preferences.",
+      "Wrong, because Coke and Pepsi should have different utilities if both rank below Heavenly Bliss.",
+      "Wrong, because the second function gives the true ratio, since it separates Heavenly Bliss more clearly.",
+      "Wrong, because both functions preserve the same ranking, so ratios depend on arbitrary numbers and have no meaning under ordinal utility."
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Which of the following statements is FALSE?",
+    "options": [
+      "Reflexivity (x ≽ x) is not a separate axiom; it follows from completeness.",
+      "Indifference ∼ is symmetric.",
+      "Weak preference ≽ is asymmetric: if x ≽ y, then y ≽ x can never hold.",
+      "If x ≽ y ≽ z ≽ x, then x, y, and z are all indifferent to each other.",
+      "Strict preference cannot cycle, because transitivity would give x ≻ z, which contradicts z ≻ x by asymmetry."
+    ],
+    "answer": 2
+  },
+  {
+    "question": "There are 1000 cups of tea; cup f_n contains n grains of sugar. You cannot tell any cup from the next one: f_n ∼ f_(n+1) for n = 1, ..., 999, where ∼ means \"is indifferent to\". What does this example show?",
+    "options": [
+      "Indifference is not symmetric, because f_1 ∼ f_2 does not give f_2 ∼ f_1.",
+      "Completeness fails, because neighboring cups cannot be ranked.",
+      "The person is irrational, because she cannot detect a single grain of sugar.",
+      "Transitivity of ∼ forces f_1 ∼ f_1000 even though the end cups are easy to tell apart, so a transitive ∼ can clash with everyday perception.",
+      "Each cup must be strictly preferred to the previous one, since it has more sugar."
+    ],
+    "answer": 3
+  }
+]
+};
 
 let appData = {};
 let currentLesson = "";
@@ -339,9 +562,9 @@ function loadData() {
   let seeded = [];
   try { seeded = JSON.parse(localStorage.getItem("quiz_app_seeded") || "[]"); } catch(e) {}
   Object.keys(SEED_QUESTIONS).forEach(lesson => {
-    if (!seeded.includes(lesson)) {
+    if (!seeded.includes(lesson + "@2")) {
       appData[lesson] = (appData[lesson] || []).concat(SEED_QUESTIONS[lesson]);
-      seeded.push(lesson);
+      seeded.push(lesson + "@2");
     }
   });
   localStorage.setItem("quiz_app_seeded", JSON.stringify(seeded));
