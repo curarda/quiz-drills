@@ -702,6 +702,338 @@ const SEED_QUESTIONS = {
     ],
     "answer": 3
   }
+],
+  "Time Series": [
+  {
+    "question": "Let uₜ be white noise with mean zero and variance σ², and let a random walk without drift be xₜ = u₁ + u₂ + … + uₜ. Which expression gives the variance of xₜ at date t?",
+    "options": [
+      "Var(xₜ) = σ²",
+      "Var(xₜ) = t²σ²",
+      "Var(xₜ) = tσ²",
+      "Var(xₜ) = σ²/t",
+      "Var(xₜ) = σ²√t"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "For the same random walk, which expression gives the covariance Cov(xₜ, xₛ) between dates t and s?",
+    "options": [
+      "Cov(xₜ, xₛ) = min(t, s) σ²",
+      "Cov(xₜ, xₛ) = max(t, s) σ²",
+      "Cov(xₜ, xₛ) = |t − s| σ²",
+      "Cov(xₜ, xₛ) = t s σ²",
+      "Cov(xₜ, xₛ) = σ²"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Let T be the number of observations, m the number of lags examined, and ρ̂(j) the sample autocorrelation of the residuals at lag j. Which expression is the Ljung-Box statistic?",
+    "options": [
+      "Q = T Σ ρ̂(j)², summed over j = 1, …, m",
+      "Q = T(T − 2) Σ ρ̂(j)² / (T − j), summed over j = 1, …, m",
+      "Q = T(T + 2) Σ ρ̂(j)² / (T + j), summed over j = 1, …, m",
+      "Q = T(T + 2) Σ ρ̂(j) / (T − j), summed over j = 1, …, m",
+      "Q = T(T + 2) Σ ρ̂(j)² / (T − j), summed over j = 1, …, m"
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Let L be the lag operator, so that Lᵏxₜ = xₜ₋ₖ. Which expression represents the fourth difference Δ₄xₜ = xₜ − xₜ₋₄?",
+    "options": [
+      "(1 − L)⁴ xₜ",
+      "(1 − L⁴) xₜ",
+      "(1 − 4L) xₜ",
+      "(1/4)(1 + L + L² + L³) xₜ",
+      "(1 + L⁴) xₜ"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Let xₜ = α xₜ₋₁ + uₜ with |α| < 1, where uₜ is white noise with variance σ². Which expression gives the constant variance of xₜ?",
+    "options": [
+      "Var(xₜ) = σ² / (1 − α)",
+      "Var(xₜ) = σ² (1 − α²)",
+      "Var(xₜ) = σ² / (1 + α²)",
+      "Var(xₜ) = σ² / (1 − α²)",
+      "Var(xₜ) = t σ²"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which condition is the covariance requirement of weak stationarity, where γ(·) is the autocovariance function and t and s are two dates?",
+    "options": [
+      "Cov(xₜ, xₛ) = γ(t)",
+      "Cov(xₜ, xₛ) = γ(min(t, s))",
+      "Cov(xₜ, xₛ) = γ(|s − t|)",
+      "Cov(xₜ, xₛ) = γ(t + s)",
+      "Cov(xₜ, xₛ) = γ(0)"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What is the key difference between strict and weak stationarity?",
+    "options": [
+      "Strict requires only a constant mean, while weak requires a constant mean and a constant variance",
+      "Weak requires a normal distribution in every period, while strict allows any distribution",
+      "Weak stationarity implies strict stationarity in every case, while the reverse never holds",
+      "Weak requires every moment to be date-independent, while strict requires only the first two",
+      "Strict requires the whole joint distribution to be shift-invariant, while weak requires only the mean, variance and covariances to be"
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Which statement distinguishes a white noise process from an i.i.d. (pure random) process?",
+    "options": [
+      "White noise has a nonzero mean, while an i.i.d. process has a mean of zero",
+      "White noise requires uncorrelated shocks, while i.i.d. requires full independence, which also rules out nonlinear dependence",
+      "White noise allows its variance to change over time, while an i.i.d. process does not",
+      "White noise requires independent shocks, while i.i.d. requires only uncorrelated ones",
+      "White noise is a non-stationary process, while an i.i.d. process is stationary"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What is the difference between the error term uₜ and the residual ûₜ of an estimated model?",
+    "options": [
+      "The error is the shock the process actually generates and is never observed, while the residual is actual minus fitted value and estimates it",
+      "The error is computed after estimation, while the residual is the shock the process actually generates",
+      "The error is the predictable part of the series, while the residual is the unpredictable part",
+      "The error has constant variance by construction, while the residual always has zero autocorrelation",
+      "The error is defined only for non-stationary series, while the residual is defined for stationary ones"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "In a quarterly series with a trend and a stable seasonal pattern, what distinguishes the first difference (1 − L)xₜ from the fourth difference (1 − L⁴)xₜ?",
+    "options": [
+      "The first difference removes seasonality but keeps the trend, while the fourth removes the trend but keeps seasonality",
+      "Both remove the trend and the seasonality, but the fourth difference leaves less noise",
+      "The first difference smooths the series like a moving average, while the fourth difference only rescales it",
+      "The first difference removes the trend but leaves seasonality, while the fourth removes seasonality and leaves a constant yearly increase",
+      "The first difference removes both components, while the fourth difference removes neither"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which of the following is NOT part of the Box-Jenkins model-building procedure?",
+    "options": [
+      "Choosing the model family by looking at the correlogram of the series",
+      "Estimating the coefficients of the chosen model",
+      "Splitting the series into deterministic trend, business cycle, seasonal and residual components",
+      "Checking whether the residuals behave like white noise",
+      "Returning to the identification step if the residuals fail the check"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which option best describes ergodicity?",
+    "options": [
+      "The mean and variance of the process do not depend on the date",
+      "Successive observations of the series are uncorrelated with one another",
+      "The residuals of the estimated model behave like white noise",
+      "The series returns to its mean after every shock",
+      "Moments computed over time from one long series approach the true process moments as the sample grows"
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Which option best describes a realisation in time series analysis?",
+    "options": [
+      "The rule that generates the data, including the distribution of its shocks",
+      "One single run of the stochastic process, which is the series we actually observe",
+      "The average of the process across all possible parallel runs at a given date",
+      "The part of the series that the estimated model cannot explain",
+      "The unobservable shock that the process produces in each period"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which option correctly lists the three conditions of weak stationarity?",
+    "options": [
+      "Constant mean, constant variance, and zero covariance between any two different periods",
+      "Constant mean, constant skewness, and covariance that depends only on the distance between periods",
+      "Zero mean, constant variance, and covariance that depends on the dates of the two periods",
+      "Constant mean, constant finite variance, and covariance that depends only on the distance between periods",
+      "Constant mean, constant variance, and a joint distribution that is the same in every period"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which statement about a random walk without drift is FALSE?",
+    "options": [
+      "Because its mean is constant at zero, it satisfies all the conditions of weak stationarity",
+      "Its first difference is a white noise process",
+      "A shock that arrives in one period stays in the level of the series permanently",
+      "The correlation between neighbouring observations approaches one as the date t grows",
+      "Its variance grows in proportion to the number of periods elapsed"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "In a stationary AR(1) process xₜ = α xₜ₋₁ + uₜ with the shock variance σ² held fixed, α rises from 0.1 to 0.9. What happens?",
+    "options": [
+      "The variance falls because the process becomes smoother, while shocks last longer",
+      "Shocks last longer, but the variance stays at σ² because σ² is fixed",
+      "Shocks last longer and the variance rises, because past shocks enter with weights αʲ that fade more slowly",
+      "The process becomes a random walk because α is close to one",
+      "Shocks die out faster and the variance rises because the weights are larger"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Why is a joint test such as the Q test preferred to checking each residual autocorrelation separately against the ±2/√T band, where T is the number of observations?",
+    "options": [
+      "It identifies the exact lag at which the autocorrelation first becomes significant",
+      "The band is invalid because sample autocorrelations are biased in every sample",
+      "The Q test additionally detects changes in the variance of the residuals",
+      "Separate checks cannot be applied to lags beyond the first one",
+      "With many lags, at least one false alarm is likely even for white noise, and the joint test reduces this to one decision"
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Which statement about the Q test applied to model residuals is FALSE, where T is the sample size and j is the lag number?",
+    "options": [
+      "Failing to reject the null hypothesis is the desired outcome in this test",
+      "A model that passes the Q test is guaranteed to have residuals with constant variance",
+      "Several autocorrelations that are each inside the band can still be jointly significant",
+      "The Ljung-Box version weights each lag by T − j to improve small-sample behaviour",
+      "The null hypothesis states that the first m residual autocorrelations are all zero"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "In the Wold representation xₜ = Σ ψⱼ εₜ₋ⱼ + κₜ, where the sum runs over j = 0, 1, 2, …, εₜ is a white noise shock and ψⱼ is the weight of the shock j periods ago, what role does κₜ play?",
+    "options": [
+      "It is the effect of the shock j periods ago on today's value",
+      "It is the innovation that cannot be forecast from the past of the series",
+      "It is the moving-average part whose weights must shrink as j grows",
+      "It is the deterministic part, such as a constant, trend or seasonal pattern, uncorrelated with the shocks",
+      "It is the error variance of the best linear forecast"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Why does the continuous growth rate (ln(xₜ) − ln(xₜ₋₁)) × 100 treat a rise from 100 to 125 and a fall from 125 to 100 symmetrically, unlike the percentage change?",
+    "options": [
+      "Because ln(125/100) = −ln(100/125), so the two moves are equal in size and opposite in sign",
+      "Because taking logarithms removes the trend and the seasonality from the series",
+      "Because ln(1 + x) = x holds exactly for any growth rate, including large ones",
+      "Because the formula divides each change by the average of the two levels",
+      "Because the logarithm scales every observation by the starting value of the series"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Let xₜ = α xₜ₋₁ + uₜ be a stationary AR(1) process with |α| < 1, where uₜ is white noise and τ is the lag. Which expression gives the autocorrelation ρ(τ)?",
+    "options": [
+      "ρ(τ) = τ α",
+      "ρ(τ) = α^τ",
+      "ρ(τ) = α^(2τ)",
+      "ρ(τ) = α^(τ − 1)",
+      "ρ(τ) = 1 − α^τ"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Let T be the number of observations, μ̂ the sample mean and τ the lag. Which expression is the estimated autocorrelation ρ̂(τ)?",
+    "options": [
+      "Σ(t=1 to T) (xₜ − μ̂)(x_(t+τ) − μ̂) / Σ(t=1 to T) (xₜ − μ̂)²",
+      "Σ(t=1 to T−τ) xₜ x_(t+τ) / Σ(t=1 to T) xₜ²",
+      "Σ(t=1 to T−τ) (xₜ − μ̂)(x_(t+τ) − μ̂) / Σ(t=1 to T−τ) (xₜ − μ̂)²",
+      "Σ(t=1 to T−τ) (xₜ − μ̂)(x_(t+τ) − μ̂) / Σ(t=1 to T) (xₜ − μ̂)²",
+      "Σ(t=1 to T−τ) (xₜ − μ̂)(x_(t+τ) − μ̂) / Σ(t=1 to T) (xₜ − μ̂)"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "Which statement correctly distinguishes the autocovariance γ(τ) from the autocorrelation ρ(τ) = γ(τ) / γ(0)?",
+    "options": [
+      "The autocorrelation is free of the unit of measurement and lies between −1 and +1, while the autocovariance changes with the unit",
+      "The autocovariance is free of the unit of measurement, while the autocorrelation changes with the unit",
+      "The autocovariance always lies between −1 and +1, while the autocorrelation can take any value",
+      "The autocorrelation is defined only for non-stationary series, while the autocovariance is defined for stationary ones",
+      "The autocovariance measures dependence between two different series, while the autocorrelation measures dependence within one series"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Let xₜ = α xₜ₋₁ + uₜ, where uₜ is white noise. Which statement is FALSE?",
+    "options": [
+      "If α = 1, the process is a random walk and shocks never die out",
+      "If |α| > 1, the process is explosive and its variance grows without bound",
+      "If α = −2, the process is stationary because −2 is smaller than 1",
+      "If |α| < 1, the Wold weights α^j shrink and the sum of their squares is finite",
+      "If |α| < 1, the effect of a shock dies out geometrically over time"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "In a regression, the residuals are positively autocorrelated, and this is ignored when the variance of the coefficients is computed. What is the consequence, as in the Cochrane-Orcutt warning?",
+    "options": [
+      "The coefficient estimates are biased toward zero, so real relationships look weaker",
+      "The standard errors are overstated, so real relationships look insignificant",
+      "The coefficients are unaffected and the t statistics are exact, but the R² falls to zero",
+      "The residual mean becomes nonzero, so every t statistic is shifted by the same amount",
+      "The standard errors are understated, so the t and F statistics are too large and a nonexistent relationship can look significant"
+    ],
+    "answer": 4
+  },
+  {
+    "question": "Which pairing of a correlogram pattern and its interpretation is correct?",
+    "options": [
+      "Bars almost flat and declining very slowly: shocks are forgotten quickly, so the series is stationary",
+      "Bars that cut off suddenly after a certain lag: memory is limited to a finite number of past shocks, which suggests an MA",
+      "Bars that cut off suddenly after a certain lag: shocks fade geometrically, which suggests an AR",
+      "All bars inside the ±2/√T band: strong autocorrelation, so a model is needed",
+      "Bars that peak every four lags in quarterly data: a deterministic trend"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Compare a deterministic trend, xₜ = 100 + 2t + uₜ, with a stochastic trend, xₜ = xₜ₋₁ + 2 + uₜ, where uₜ is white noise with variance σ². What distinguishes how a one-time shock affects them?",
+    "options": [
+      "In both, the shock is permanent, but the variance grows only in the deterministic trend",
+      "In the deterministic trend the shock stays permanently, while in the stochastic trend the series returns to the line",
+      "In the deterministic trend the series returns to the line after a shock, while in the stochastic trend the shock stays and the variance grows with t",
+      "In both, the shock dies out, but it dies out faster in the stochastic trend",
+      "In the deterministic trend the variance grows with t, while in the stochastic trend it stays constant"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Let ûₜ be the residuals of the main model, p the number of lagged residuals used, T the number of observations and R² the fit of an auxiliary regression. Which description of the LM (Breusch-Godfrey) test of no residual autocorrelation is correct?",
+    "options": [
+      "ûₜ is regressed on the main regressors and ûₜ₋₁, …, ûₜ₋ₚ, and LM = T R² follows χ²(p) under the null hypothesis of no autocorrelation",
+      "ûₜ is regressed on the main regressors and ûₜ₋₁, …, ûₜ₋ₚ, and LM = R² / T follows χ²(p) under the null hypothesis",
+      "ûₜ² is regressed on ûₜ₋₁², …, ûₜ₋ₚ², and LM = T R² follows χ²(p) under the null hypothesis of no autocorrelation",
+      "ûₜ is regressed on the main regressors and ûₜ₋₁, …, ûₜ₋ₚ, and LM = T R² follows χ²(T − p) under the null hypothesis",
+      "ûₜ is regressed on the main regressors and ûₜ₋₁, …, ûₜ₋ₚ, and small values of LM indicate autocorrelation"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "The residuals of an estimated model pass the Q test, so no autocorrelation is found. Yet their squares are clearly related to the squares of their own past values. Which conclusion is correct?",
+    "options": [
+      "The residuals are white noise, because passing the Q test proves all three properties",
+      "The model has missed autocorrelation in the mean, so lags should be added",
+      "The Q test checks only linear autocorrelation, so the residuals can be uncorrelated yet have changing variance, which an ARCH LM test on the squared residuals would detect",
+      "The residuals must be independent, because uncorrelated and independent mean the same thing",
+      "The Q test must be invalid, because zero covariance between periods already implies constant variance"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Let α(L) = 1 − α₁L − α₂L² − … − αₚLᵖ be a lag polynomial. If the series is a constant, xₜ = δ for all t, then α(L)xₜ = α(1)δ. Which expression gives α(1)?",
+    "options": [
+      "α(1) = 1 + α₁ + α₂ + … + αₚ",
+      "α(1) = α₁ + α₂ + … + αₚ",
+      "α(1) = 1 − α₁² − α₂² − … − αₚ²",
+      "α(1) = 1 − αₚ",
+      "α(1) = 1 − α₁ − α₂ − … − αₚ"
+    ],
+    "answer": 4
+  }
 ]
 };
 
